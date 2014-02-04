@@ -1,0 +1,104 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+
+int main(void) {
+int   i, j;
+int   jCount, cCount;
+char  keyword[42];
+
+struct list1 {
+  char key[42];
+  char name[42];
+  char keyword1[42];
+  char organizer[42];
+  char year[42];
+  char location[42];
+} *conference;
+
+struct list2 {
+  char key[42];
+  char name[42];
+  char keyword1[42];
+  char keyword2[42];
+  char keyword3[42];
+  char publisher[42];
+  char year[42];
+} *journal;
+
+FILE *data;
+
+    // Determine size of data files.
+    data = fopen("./midterm.data", "r");
+    jCount = 0;
+    cCount = 0;
+    while (1) {
+       fscanf(data, "%s", keyword);
+       if (feof(data)) break;
+       keyword[0] = toupper(keyword[0]);
+       if (!strcmp(keyword, "Conference")) cCount++;
+       else if (!strcmp(keyword, "Journal")) jCount++;
+    } 
+
+    // printf("%d %d\n", cCount, jCount); - just for testing.
+
+    // Create dynamic array of structures.
+    conference = (struct list1 *)calloc(cCount, sizeof(struct list1));
+    journal    = (struct list2 *)calloc(jCount, sizeof(struct list2));
+
+    // Populate dynamic array.
+    rewind(data);
+    cCount = 0;
+    jCount = 0;
+    while (1) {
+       fscanf(data, "%s", keyword);
+       if (feof(data)) break;
+       keyword[0] = toupper(keyword[0]);
+       if (!strcmp(keyword, "Conference")){
+          strcpy(conference[cCount].key, keyword);
+          fscanf(data, "%s", conference[cCount].name);
+          fscanf(data, "%s", conference[cCount].keyword1);
+          fscanf(data, "%s", conference[cCount].organizer);
+          fscanf(data, "%s", conference[cCount].year);
+          fscanf(data, "%s", conference[cCount].location);
+          cCount++;
+       } else if (!strcmp(keyword, "Journal")) {
+          strcpy(journal[jCount].key, keyword);
+          fscanf(data, "%s", journal[jCount].name);
+          fscanf(data, "%s", journal[jCount].keyword1);
+          fscanf(data, "%s", journal[jCount].keyword2);
+          fscanf(data, "%s", journal[jCount].keyword3);
+          fscanf(data, "%s", journal[jCount].publisher);
+          fscanf(data, "%s", journal[jCount].year);
+          jCount++;
+       }
+    } 
+    fclose(data);
+
+    // Print data in reverse order.
+    for (j = (jCount-1); j >= 0; j--) {
+        printf("%s ", journal[j].key);
+        printf("%s ", journal[j].name);
+        printf("%s ", journal[j].keyword1);
+        printf("%s ", journal[j].keyword2);
+        printf("%s ", journal[j].keyword3);
+        printf("%s ", journal[j].publisher);
+        printf("%s ", journal[j].year);
+        printf("\n");
+    }
+    for (j = (cCount-1); j >= 0; j--) {
+        printf("%s ", conference[j].key);
+        printf("%s ", conference[j].name);
+        printf("%s ", conference[j].keyword1);
+        printf("%s ", conference[j].organizer);
+        printf("%s ", conference[j].year);
+        printf("%s ", conference[j].location);
+        printf("\n");
+    }
+
+    // Free dynamic arrays.
+    free(conference);
+    free(journal);
+    return 0;
+}

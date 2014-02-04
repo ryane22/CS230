@@ -1,0 +1,3 @@
+build:
+	gcc -shared -fPIC HW11-A-Evenstad.c HW11-B-Evenstad.c HW11-C-Evenstad.c -o HW11-lib-Evenstad.so
+	gcc HW11-Evenstad.c ./HW11-lib-Evenstad.so -o HW11-3

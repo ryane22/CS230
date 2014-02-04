@@ -1,0 +1,7 @@
+build:
+	gcc HW11-A-Evenstad.c HW11-B-Evenstad.c HW11-C-Evenstad.c -c
+	gcc HW11-Evenstad.c HW11-A-Evenstad.o HW11-B-Evenstad.o HW11-C-Evenstad.o -o HW11
+
+clean:
+	rm *.o -f
+	rm HW11 -f

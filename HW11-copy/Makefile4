@@ -1,0 +1,2 @@
+build:
+	gcc HW11-Evenstad-4.c -ldl -rdynamic -o HW11-4 -g

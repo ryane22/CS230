@@ -1,0 +1,41 @@
+Applebees
+GroundRound
+BlueMoose
+DrunkenNoodle
+JLB
+BWW
+Home
+STOP
+Applebees BlueMoose 10
+Applebees DrunkenNoodle 13
+Applebees GroundRound 7
+Applebees JLB 3
+Applebees BWW 5
+GroundRound Applebees 2
+GroundRound DrunkenNoodle 7
+GroundRound BlueMoose 8
+GroundRound JLB 7
+GroundRound BWW 5
+BlueMoose Applebees 10
+BlueMoose GroundRound 8
+BlueMoose DrunkenNoodle 9
+BlueMoose JLB 18
+BlueMoose BWW 19
+BlueMoose Home 53
+DrunkenNoodle Applebees 14
+DrunkenNoodle GroundRound 6
+DrunkenNoodle BlueMoose 11
+DrunkenNoodle JLB 17
+DrunkenNoodle BWW 18
+JLB Applebees 3
+JLB GroundRound 7
+JLB BlueMoose 18
+JLB DrunkenNoodle 17
+JLB BWW 2
+BWW Applebees 5
+BWW GroundRound 5
+BWW BlueMoose 19
+BWW DrunkenNoodle 18
+BWW JLB 2
+STOP STOP 0
+GroundRound

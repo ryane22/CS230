@@ -1,0 +1,21 @@
+Applebees
+GroundRound
+BlueMoose
+DrunkenNoodle
+Home
+STOP
+Applebees BlueMoose 5
+Applebees DrunkenNoodle 13
+Applebees GroundRound 7
+GroundRound Applebees 2
+GroundRound DrunkenNoodle 7
+GroundRound BlueMoose 8
+BlueMoose Applebees 10
+BlueMoose GroundRound 8
+BlueMoose DrunkenNoodle 9
+BlueMoose Home 2
+DrunkenNoodle Applebees 14
+DrunkenNoodle GroundRound 6
+DrunkenNoodle BlueMoose 11
+STOP STOP 0
+GroundRound

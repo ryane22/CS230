@@ -1,0 +1,5 @@
+build:
+	gcc -static HW11-Evenstad.c HW11-A-Evenstad.c HW11-B-Evenstad.c HW11-C-Evenstad.c -c
+	ar rcs HW11-lib-Evenstad.a HW11-Evenstad.o HW11-A-Evenstad.o HW11-B-Evenstad.o HW11-C-Evenstad.o
+	gcc -static HW11-Evenstad.c HW11-lib-Evenstad.a -o HW11-2
+

@@ -1,0 +1,146 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct node {
+   char  name[42];
+   struct node *next;
+};
+
+typedef struct node link;
+
+/********************************************************/
+/* INSERT INTO LINKED-LIST.                             */
+/********************************************************/
+link* INSERT(link *head, char name[42]) {
+link *current, *new;
+    // Make a new link and populate name field.
+    new = (link *)malloc(sizeof(link));
+    strcpy(new->name, name);
+    // Empty list.
+    if (head == NULL) {
+       new->next  = NULL;   
+       head       = new;
+       return head;
+    } 
+    // Add to front of list.
+    current = head;
+    if (strcmp(current->name, name) >= 0) {
+        new->next = current;   
+        head      = new;
+        return head;
+    } 
+    // Search for place to add to middle of list.
+    current = head;
+    while (current->next != NULL) {
+       if (strcmp(current->next->name, name) >= 0 ) { 
+          new->next     = current->next;
+          current->next = new;
+          return head;
+       }
+       current = current->next;
+    }
+    // Search failed, add to end of list.
+    new->next     = NULL;
+    current->next = new;
+    return head;
+}
+
+/********************************************************/
+/* DELETE FROM LINKED-LIST.                             */
+/********************************************************/
+link* DELETE(link *head, char name[42]) {
+link *current, *old;
+   // Check for empty list.
+   if (head == NULL) return head;
+   // Delete first link.
+   if (!strcmp(head->name, name)) { 
+      old  = head;
+      head = head->next;
+      free(old);
+      return head;
+   }
+   // Delete a middle or last link.
+   current = head;
+    while (current->next != NULL) {
+       if (!strcmp(current->next->name, name)) { 
+          old = current->next;
+          current->next = current->next->next;
+          free(old);
+          return head;
+       }
+       current = current->next;
+    }
+    // Search failed. Do nothing.
+    return head;
+}
+
+/********************************************************/
+/* DISPLAY LINKED-LIST.                                 */
+/********************************************************/
+void DISPLAY(link *head) {
+link *current;
+    current = head;
+    while (current != NULL) {
+       printf("%s\n", current->name);
+       current = current->next ;
+    }
+}
+
+/********************************************************/
+/* FREE LINKED-LIST.                                    */
+/********************************************************/
+void FREE(link *head) {
+link *current;
+    current = head;
+    while (current->next != NULL) {
+       current  = current->next;
+       free(head);
+       head = current;
+    }
+    free(head);
+    head = NULL;
+}
+
+/********************************************************/
+/* MAIN                                                 */
+/********************************************************/
+int main(void) {
+char action, temp[42];
+FILE *data;
+link *current, *head, *previous;
+
+    // Initialize head & tails.
+    head = NULL;
+
+    // Open data file.
+    data = fopen("hw8.data", "r");
+    if (data == NULL) {
+       printf("ERROR - cound not open hw8.data.\n");
+       exit(0);
+    }
+
+    // Read data and insert into list.
+    while (1) {
+        fscanf(data, "%s %c", temp, &action);
+        if (feof(data)) break;
+        switch (action) {
+           case 'a': {
+               head = INSERT(head, temp);
+               break;
+           }
+           case 'd': {
+               head = DELETE(head, temp);
+               break;
+           }
+        }
+    }
+
+    // Display list contents.
+    DISPLAY(head);
+
+    // Free list.
+    FREE(head);
+
+    return 0;
+}
